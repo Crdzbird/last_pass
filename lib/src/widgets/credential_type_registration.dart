@@ -13,7 +13,9 @@ class CredentialTypeRegistration extends StatelessWidget {
   Widget build(BuildContext context) {
     return GestureDetector(
       onTap: onTap,
-      child: Container(
+      child: AnimatedContainer(
+        duration: Duration(milliseconds: 300),
+        curve: Curves.easeInQuad,
         margin: EdgeInsets.symmetric(vertical: 15, horizontal: 15),
         decoration: BoxDecoration(
           borderRadius: BorderRadius.circular(15.0),

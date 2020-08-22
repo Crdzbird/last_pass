@@ -37,6 +37,7 @@ class DashboardScreen extends StatelessWidget {
                 title: 'ADD',
                 width: screen.width * 0.3,
                 backgroundColor: Color.fromRGBO(0, 0, 0, 1.0),
+                tap: () => Navigator.pushNamed(context, 'registerPassword'),
               ),
             ),
           ],

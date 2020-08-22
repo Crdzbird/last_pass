@@ -15,7 +15,7 @@ class MyApp extends StatelessWidget {
       ],
       child: MaterialApp(
         title: 'LastPass',
-        initialRoute: 'registerPassword',
+        initialRoute: 'splash',
         debugShowCheckedModeBanner: false,
         onGenerateRoute: generateRoutes,
       ),

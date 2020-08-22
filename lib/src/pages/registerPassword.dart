@@ -10,6 +10,16 @@ class RegisterPasswordScreen extends StatefulWidget {
 
 class _RegisterPasswordScreenState extends State<RegisterPasswordScreen> {
   int _selectedMainPage = 0;
+  final List _temporaryList = [
+    {'icon': FontAwesomeIcons.unlockAlt, 'title': 'Passwords'},
+    {'icon': FontAwesomeIcons.stickyNote, 'title': 'Secure Notes'},
+    {'icon': FontAwesomeIcons.idBadge, 'title': 'Licenses'},
+    {'icon': FontAwesomeIcons.passport, 'title': 'Passport'},
+    {'icon': FontAwesomeIcons.fileContract, 'title': 'SC Number'},
+    {'icon': FontAwesomeIcons.pager, 'title': 'Insurance'},
+    {'icon': FontAwesomeIcons.keycdn, 'title': 'SSH Key'},
+    {'icon': FontAwesomeIcons.wifi, 'title': 'Wifi Pass'},
+  ];
 
   @override
   Widget build(BuildContext context) {
@@ -19,7 +29,9 @@ class _RegisterPasswordScreenState extends State<RegisterPasswordScreen> {
         backgroundColor: Color.fromRGBO(255, 255, 255, 0.1),
         elevation: 0.0,
         leading: GestureDetector(
-          onTap: () {},
+          onTap: () {
+            Navigator.pop(context);
+          },
           child: Center(
             child: Text(
               'BACK',
@@ -60,8 +72,8 @@ class _RegisterPasswordScreenState extends State<RegisterPasswordScreen> {
                 itemBuilder: (context, index) {
                   return CredentialTypeRegistration(
                       active: _selectedMainPage == index,
-                      title: 'Passwords',
-                      icon: FontAwesomeIcons.unlockAlt,
+                      title: _temporaryList[index]['title'],
+                      icon: _temporaryList[index]['icon'],
                       onTap: () {
                         setState(() {
                           _selectedMainPage = index;
