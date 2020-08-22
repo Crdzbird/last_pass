@@ -1,5 +1,6 @@
 import 'dart:math' as math;
 import 'package:flutter/material.dart';
+import 'package:flutter_svg/flutter_svg.dart';
 import 'package:last_pass/src/widgets/lastPass_title.dart';
 
 class OnBoardContent extends StatelessWidget {
@@ -32,12 +33,13 @@ class OnBoardContent extends StatelessWidget {
                 crossAxisAlignment: CrossAxisAlignment.center,
                 children: <Widget>[
                   ClipRRect(
-                    child: Image.asset(
+                    child: SvgPicture.asset(
                       imagePath,
                       alignment: Alignment(-offset.abs(), 0),
                       fit: BoxFit.contain,
                       height: size.height * 0.3,
                       width: size.width,
+                      semanticsLabel: title,
                     ),
                   ),
                   SizedBox(

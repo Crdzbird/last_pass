@@ -37,20 +37,20 @@ List<Slider> getSlides() {
   slider.setDescription(
       "Rest at ease. You'll find out inmediately if you're compromised");
   slider.setTitle("Secure password vault");
-  slider.setImageAssetPath("assets/images/temp1.png");
+  slider.setImageAssetPath("assets/images/blockchain.svg");
   slides.add(slider);
   slider = new Slider();
 
   slider.setDescription("You can access to your data from any other phone");
   slider.setTitle("Access on all devices");
-  slider.setImageAssetPath("assets/images/temp2.png");
+  slider.setImageAssetPath("assets/images/cloud_file_transfer.svg");
   slides.add(slider);
   slider = new Slider();
 
   slider.setDescription(
       "Be at easy, your passwords are encrypted and stored with the most secured encryption.");
   slider.setTitle("Save and fill passwords");
-  slider.setImageAssetPath("assets/images/temp3.png");
+  slider.setImageAssetPath("assets/images/shield.svg");
   slides.add(slider);
   slider = new Slider();
 

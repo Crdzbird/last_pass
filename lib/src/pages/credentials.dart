@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
+import 'package:last_pass/src/provider/conditions_provider.dart';
 import 'package:last_pass/src/provider/form_notifier_provider.dart';
 import 'package:last_pass/src/utils/fade_indexed_stack.dart';
 import 'package:last_pass/src/utils/screens.dart';
@@ -80,22 +81,97 @@ class _CredentialsScreenState extends State<CredentialsScreen> {
   }
 
   Widget _termsConditions(BuildContext context, Size size) {
-    return RichText(
-      text: TextSpan(
-        style: TextStyle(
-          fontFamily: 'Scientia',
-          fontSize: size.width * 0.05,
-          fontWeight: FontWeight.w600,
-          color: Color.fromRGBO(0, 0, 0, 1.0),
-        ),
-        text: 'TERMS & C',
-        children: [
-          WidgetSpan(
-            alignment: PlaceholderAlignment.middle,
-            child: Icon(FontAwesomeIcons.caretRight),
+    return GestureDetector(
+      onTap: () => showDialog(size),
+      child: RichText(
+        text: TextSpan(
+          style: TextStyle(
+            fontFamily: 'Scientia',
+            fontSize: size.width * 0.05,
+            fontWeight: FontWeight.w600,
+            color: Color.fromRGBO(0, 0, 0, 1.0),
           ),
-        ],
+          text: 'TERMS & C',
+          children: [
+            WidgetSpan(
+              alignment: PlaceholderAlignment.middle,
+              child: Icon(FontAwesomeIcons.caretRight),
+            ),
+          ],
+        ),
       ),
+    );
+  }
+
+  void showDialog(Size size) {
+    showGeneralDialog(
+      barrierLabel: "terms",
+      barrierDismissible: true,
+      barrierColor: Colors.black.withOpacity(0.5),
+      transitionDuration: Duration(milliseconds: 700),
+      context: context,
+      pageBuilder: (_, __, ___) {
+        return Align(
+          alignment: Alignment.bottomCenter,
+          child: Material(
+            color: Colors.transparent,
+            child: SafeArea(
+              child: Container(
+                height: size.height * 0.7,
+                child: FutureBuilder(
+                  initialData: null,
+                  future: ConditionsProvider().loadConditions(),
+                  builder: (context, AsyncSnapshot<String> snapshot) {
+                    return (snapshot.data == null)
+                        ? Center(
+                            child: CircularProgressIndicator(),
+                          )
+                        : Column(
+                            mainAxisSize: MainAxisSize.min,
+                            children: [
+                              SizedBox(
+                                height: 20.0,
+                              ),
+                              Expanded(
+                                child: SingleChildScrollView(
+                                  padding:
+                                      EdgeInsets.symmetric(horizontal: 10.0),
+                                  scrollDirection: Axis.vertical,
+                                  child: Container(
+                                    height: size.height * 0.7,
+                                    decoration: BoxDecoration(
+                                      borderRadius: BorderRadius.circular(40),
+                                    ),
+                                    child: Text(
+                                      snapshot.data,
+                                      style: TextStyle(
+                                        color: Colors.black,
+                                        fontSize: 10.0,
+                                      ),
+                                    ),
+                                  ),
+                                ),
+                              ),
+                            ],
+                          );
+                  },
+                ),
+                margin: EdgeInsets.only(bottom: 10, left: 12, right: 12),
+                decoration: BoxDecoration(
+                  color: Colors.white,
+                  borderRadius: BorderRadius.circular(40),
+                ),
+              ),
+            ),
+          ),
+        );
+      },
+      transitionBuilder: (_, anim, __, child) {
+        return SlideTransition(
+          position: Tween(begin: Offset(0, 1), end: Offset(0, 0)).animate(anim),
+          child: child,
+        );
+      },
     );
   }
 }
