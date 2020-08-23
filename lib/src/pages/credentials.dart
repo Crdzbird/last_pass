@@ -62,7 +62,7 @@ class _CredentialsScreenState extends State<CredentialsScreen> {
                         child: _termsConditions(context, screen),
                       ),
                       CornerButton(
-                        width: screen.width * 0.3,
+                        width: screen.width * 0.35,
                         height: kToolbarHeight,
                         backgroundColor: Color.fromRGBO(0, 0, 0, 1.0),
                         title: !value

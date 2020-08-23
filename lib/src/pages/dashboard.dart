@@ -1,3 +1,5 @@
+import 'dart:ui';
+
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:easy_localization/easy_localization.dart';
@@ -5,12 +7,19 @@ import 'package:last_pass/src/widgets/corner_button.dart';
 import 'package:last_pass/src/widgets/folder_card.dart';
 import 'package:last_pass/src/widgets/recent_card.dart';
 
-class DashboardScreen extends StatelessWidget {
-  final _isFreeUser = false;
+class DashboardScreen extends StatefulWidget {
+  @override
+  _DashboardScreenState createState() => _DashboardScreenState();
+}
+
+class _DashboardScreenState extends State<DashboardScreen> {
+  bool _isFreeUser = false;
+  bool _isBackdrop = false;
 
   @override
   Widget build(BuildContext context) {
     final screen = MediaQuery.of(context).size;
+    print("backdrop: $_isBackdrop");
     return Scaffold(
       body: SafeArea(
         child: Stack(
@@ -28,7 +37,7 @@ class DashboardScreen extends StatelessWidget {
                   SizedBox(height: 25.0),
                   _folders(screen),
                   SizedBox(height: 25.0),
-                  _recent(screen),
+                  _recent(context, screen),
                 ],
               ),
             ),
@@ -43,14 +52,59 @@ class DashboardScreen extends StatelessWidget {
                 tap: () => Navigator.pushNamed(context, 'registerPassword'),
               ),
             ),
+            (_isBackdrop)
+                ? ClipRect(
+                    child: BackdropFilter(
+                      filter: ImageFilter.blur(sigmaX: 2.0, sigmaY: 2.0),
+                      child: Container(
+                        width: screen.width,
+                        height: screen.height,
+                        decoration: BoxDecoration(
+                          color: Color.fromRGBO(255, 255, 255, 0.1),
+                        ),
+                      ),
+                    ),
+                  )
+                : Container(),
           ],
         ),
       ),
     );
   }
 
-//TODO: THIS ALSO IS GONNA BE A LIST OF RECENT ACCESS.
-  Widget _recent(Size screen) {
+  void _showBottomSheet(BuildContext context) async {
+    setState(() {
+      _isBackdrop = true;
+    });
+    print(_isBackdrop);
+    var bottomSheet = await showModalBottomSheet(
+      context: context,
+      isDismissible: true,
+      elevation: 5.0,
+      shape: RoundedRectangleBorder(
+        borderRadius: BorderRadius.vertical(
+          top: Radius.circular(35),
+        ),
+      ),
+      clipBehavior: Clip.antiAliasWithSaveLayer,
+      builder: (context) {
+        return Container(
+          decoration: new BoxDecoration(
+            color: Colors.white,
+          ),
+          child: Center(
+            child: Text("Hi BottomSheet"),
+          ),
+        );
+      },
+    );
+    setState(() {
+      _isBackdrop = false;
+    });
+    print('bottomSheet closed: ' + bottomSheet.toString());
+  }
+
+  Widget _recent(BuildContext context, Size screen) {
     return Flexible(
       child: Container(
         width: screen.width,
@@ -70,12 +124,15 @@ class DashboardScreen extends StatelessWidget {
               child: ListView(
                 scrollDirection: Axis.vertical,
                 children: [
-                  RecentCard(
-                    leadingColor: Color.fromRGBO(0, 0, 0, 1.0),
-                    leadingIcon: FontAwesomeIcons.unlockAlt,
-                    title: 'Gmail Passwords',
-                    trailingIcon: FontAwesomeIcons.arrowRight,
-                    trailingColor: Color.fromRGBO(0, 0, 0, 1.0),
+                  GestureDetector(
+                    onLongPress: () => _showBottomSheet(context),
+                    child: RecentCard(
+                      leadingColor: Color.fromRGBO(0, 0, 0, 1.0),
+                      leadingIcon: FontAwesomeIcons.unlockAlt,
+                      title: 'Gmail Passwords',
+                      trailingIcon: FontAwesomeIcons.arrowRight,
+                      trailingColor: Color.fromRGBO(0, 0, 0, 1.0),
+                    ),
                   ),
                   Divider(
                     height: 7.0,
@@ -115,7 +172,6 @@ class DashboardScreen extends StatelessWidget {
     );
   }
 
-//TODO: THIS IS GONNA BE A STREAM OF FOLDERS, ORDERED BY MOST RECENT.
   Widget _folders(Size screen) {
     return Container(
       width: screen.width,

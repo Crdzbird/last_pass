@@ -41,7 +41,7 @@ class MyApp extends StatelessWidget {
           visualDensity: VisualDensity.adaptivePlatformDensity,
         ),
         title: 'ForgotPass',
-        initialRoute: 'splash',
+        initialRoute: 'dashboard',
         debugShowCheckedModeBanner: false,
         onGenerateRoute: generateRoutes,
       ),
