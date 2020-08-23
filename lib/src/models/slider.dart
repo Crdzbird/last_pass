@@ -1,3 +1,5 @@
+import 'package:easy_localization/easy_localization.dart';
+
 class Slider {
   String imageAssetPath;
   String title;
@@ -34,22 +36,20 @@ List<Slider> getSlides() {
   List<Slider> slides = new List<Slider>();
   Slider slider = new Slider();
 
-  slider.setDescription(
-      "Rest at ease. You'll find out inmediately if you're compromised");
-  slider.setTitle("Secure password vault");
+  slider.setDescription("securePasswordSliderDescription".tr());
+  slider.setTitle("securePasswordSliderTitle".tr());
   slider.setImageAssetPath("assets/images/blockchain.svg");
   slides.add(slider);
   slider = new Slider();
 
-  slider.setDescription("You can access to your data from any other phone");
-  slider.setTitle("Access on all devices");
+  slider.setDescription("accessSliderDescription".tr());
+  slider.setTitle("accessSliderTitle".tr());
   slider.setImageAssetPath("assets/images/cloud_file_transfer.svg");
   slides.add(slider);
   slider = new Slider();
 
-  slider.setDescription(
-      "Be at easy, your passwords are encrypted and stored with the most secured encryption.");
-  slider.setTitle("Save and fill passwords");
+  slider.setDescription("encryptionSliderDescription".tr());
+  slider.setTitle("encryptionSliderTitle".tr());
   slider.setImageAssetPath("assets/images/shield.svg");
   slides.add(slider);
   slider = new Slider();

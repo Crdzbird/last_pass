@@ -7,6 +7,7 @@ import 'package:last_pass/src/utils/screens.dart';
 import 'package:last_pass/src/widgets/corner_button.dart';
 import 'package:last_pass/src/widgets/lastPass_title.dart';
 import 'package:provider/provider.dart';
+import 'package:easy_localization/easy_localization.dart';
 
 class CredentialsScreen extends StatefulWidget {
   @override
@@ -64,7 +65,9 @@ class _CredentialsScreenState extends State<CredentialsScreen> {
                         width: screen.width * 0.3,
                         height: kToolbarHeight,
                         backgroundColor: Color.fromRGBO(0, 0, 0, 1.0),
-                        title: !value ? 'SIGNUP' : 'LOGIN',
+                        title: !value
+                            ? 'register'.tr().toUpperCase()
+                            : 'login'.tr().toUpperCase(),
                         tap: () => {
                           Navigator.pushReplacementNamed(context, 'dashboard'),
                         },
@@ -91,7 +94,7 @@ class _CredentialsScreenState extends State<CredentialsScreen> {
             fontWeight: FontWeight.w600,
             color: Color.fromRGBO(0, 0, 0, 1.0),
           ),
-          text: 'TERMS & C',
+          text: 'terms'.tr(),
           children: [
             WidgetSpan(
               alignment: PlaceholderAlignment.middle,

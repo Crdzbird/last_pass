@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:last_pass/src/widgets/credentials_question.dart';
+import 'package:easy_localization/easy_localization.dart';
 
 class Login extends StatelessWidget {
   @override
@@ -15,7 +16,7 @@ class Login extends StatelessWidget {
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
             Text(
-              'Login',
+              'login'.tr(),
               style: TextStyle(
                 color: Color.fromRGBO(0, 0, 0, 1.0),
                 fontFamily: 'Scientia',
@@ -31,7 +32,7 @@ class Login extends StatelessWidget {
                   fontWeight: FontWeight.w500,
                 ),
                 hintText: 'jhondoe@gmail.com',
-                labelText: 'Email address',
+                labelText: 'email'.tr(),
               ),
               style: TextStyle(
                 fontFamily: 'Flexo',
@@ -51,7 +52,7 @@ class Login extends StatelessWidget {
                   fontWeight: FontWeight.w500,
                 ),
                 hintText: '********',
-                labelText: 'Master password',
+                labelText: 'masterPassword'.tr(),
               ),
               style: TextStyle(
                 fontFamily: 'Flexo',
@@ -63,7 +64,7 @@ class Login extends StatelessWidget {
               height: 35.0,
             ),
             Text(
-              'By completing this form, I agree to the Terms \nand Privacy Policy.',
+              'termsAcceptance'.tr(),
               style: TextStyle(
                 color: Color.fromRGBO(0, 0, 0, 1.0),
                 height: 1.5,
@@ -84,7 +85,7 @@ class Login extends StatelessWidget {
                   ),
                 ),
                 CredentialsQuestion(
-                  title: 'Signup',
+                  title: 'register'.tr(),
                 ),
                 Container(
                   height: 1.0,

@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:last_pass/src/widgets/credentials_question.dart';
+import 'package:easy_localization/easy_localization.dart';
 
 class Signup extends StatelessWidget {
   @override
@@ -15,7 +16,7 @@ class Signup extends StatelessWidget {
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
             Text(
-              'Signup',
+              'login'.tr(),
               style: TextStyle(
                 color: Color.fromRGBO(0, 0, 0, 1.0),
                 fontFamily: 'Scientia',
@@ -31,7 +32,7 @@ class Signup extends StatelessWidget {
                   fontWeight: FontWeight.w500,
                 ),
                 hintText: 'jhondoe@gmail.com',
-                labelText: 'Email address',
+                labelText: 'email'.tr(),
               ),
               style: TextStyle(
                 fontFamily: 'Flexo',
@@ -51,7 +52,7 @@ class Signup extends StatelessWidget {
                   fontWeight: FontWeight.w500,
                 ),
                 hintText: '********',
-                labelText: 'Master password',
+                labelText: 'masterPassword'.tr(),
               ),
               style: TextStyle(
                 fontFamily: 'Flexo',
@@ -71,7 +72,7 @@ class Signup extends StatelessWidget {
                   fontWeight: FontWeight.w500,
                 ),
                 hintText: '********',
-                labelText: 'Confirm master password',
+                labelText: 'confirmatioMasterPassword'.tr(),
                 counterText: '',
                 errorText: '',
               ),
@@ -88,7 +89,7 @@ class Signup extends StatelessWidget {
                   fontFamily: 'Flexo',
                   fontWeight: FontWeight.w500,
                 ),
-                labelText: 'Reminder (Optional)',
+                labelText: 'reminder'.tr(),
               ),
               style: TextStyle(
                 fontFamily: 'Flexo',
@@ -100,7 +101,7 @@ class Signup extends StatelessWidget {
               height: 35.0,
             ),
             Text(
-              'By completing this form, I agree to the Terms \nand Privacy Policy.',
+              'termsAcceptance'.tr(),
               style: TextStyle(
                 color: Color.fromRGBO(0, 0, 0, 1.0),
                 height: 1.5,
@@ -121,7 +122,7 @@ class Signup extends StatelessWidget {
                   ),
                 ),
                 CredentialsQuestion(
-                  title: 'Login',
+                  title: 'login'.tr(),
                 ),
                 Container(
                   height: 1.0,

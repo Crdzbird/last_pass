@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:easy_localization/easy_localization.dart';
 import 'package:last_pass/src/models/slider.dart' as Sliders;
 import 'package:last_pass/src/widgets/onboard_content.dart';
 
@@ -65,7 +66,7 @@ class _OnBoardingScreenState extends State<OnBoardingScreen> {
                     },
                     splashColor: Colors.blue[50],
                     child: Text(
-                      "SKIP",
+                      "skip".tr().toUpperCase(),
                       style: TextStyle(
                         color: Color(0xFF0074E4),
                         fontWeight: FontWeight.w600,
@@ -90,7 +91,7 @@ class _OnBoardingScreenState extends State<OnBoardingScreen> {
                     },
                     splashColor: Colors.blue[50],
                     child: Text(
-                      "NEXT",
+                      "next".tr().toUpperCase(),
                       style: TextStyle(
                         color: Color(0xFF0074E4),
                         fontWeight: FontWeight.w600,
@@ -110,7 +111,7 @@ class _OnBoardingScreenState extends State<OnBoardingScreen> {
                 shape: BeveledRectangleBorder(),
                 color: Colors.blue,
                 child: Text(
-                  "GET STARTED NOW",
+                  "startNow".tr().toUpperCase(),
                   style: TextStyle(
                     color: Colors.white,
                     fontWeight: FontWeight.w600,

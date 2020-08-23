@@ -1,10 +1,13 @@
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
+import 'package:easy_localization/easy_localization.dart';
 import 'package:last_pass/src/widgets/corner_button.dart';
 import 'package:last_pass/src/widgets/folder_card.dart';
 import 'package:last_pass/src/widgets/recent_card.dart';
 
 class DashboardScreen extends StatelessWidget {
+  final _isFreeUser = false;
+
   @override
   Widget build(BuildContext context) {
     final screen = MediaQuery.of(context).size;
@@ -34,7 +37,7 @@ class DashboardScreen extends StatelessWidget {
               right: 0.0,
               child: CornerButton(
                 height: kToolbarHeight,
-                title: 'ADD',
+                title: 'add'.tr().toUpperCase(),
                 width: screen.width * 0.3,
                 backgroundColor: Color.fromRGBO(0, 0, 0, 1.0),
                 tap: () => Navigator.pushNamed(context, 'registerPassword'),
@@ -56,7 +59,7 @@ class DashboardScreen extends StatelessWidget {
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
             Text(
-              'RECENT',
+              'recent'.tr().toUpperCase(),
               style: TextStyle(
                 fontFamily: 'Scientia',
                 fontWeight: FontWeight.w400,
@@ -121,7 +124,7 @@ class DashboardScreen extends StatelessWidget {
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
           Text(
-            'FOLDERS',
+            'folders'.tr().toUpperCase(),
             style: TextStyle(
               fontFamily: 'Scientia',
               fontWeight: FontWeight.w400,
@@ -182,40 +185,51 @@ class DashboardScreen extends StatelessWidget {
           width: screen.width,
           height: screen.height * 0.08,
           padding: EdgeInsets.symmetric(horizontal: 10.0),
-          child: Row(
-            mainAxisAlignment: MainAxisAlignment.spaceBetween,
-            children: [
-              Text(
-                'You are a Free user',
-                style: TextStyle(
-                  color: Color.fromRGBO(0, 0, 0, 1.0),
-                  fontFamily: 'Scientia',
-                  fontWeight: FontWeight.w900,
-                  fontSize: 16.0,
-                ),
-              ),
-              FlatButton(
-                splashColor: Colors.blue,
-                onPressed: () {},
-                color: Color.fromRGBO(0, 0, 0, 1.0),
-                shape: RoundedRectangleBorder(
-                  borderRadius: BorderRadius.circular(15.0),
-                ),
-                child: Container(
-                  padding:
-                      EdgeInsets.symmetric(horizontal: 15.0, vertical: 18.0),
+          child: (!_isFreeUser)
+              ? Row(
+                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                  children: [
+                    Text(
+                      'freeUser'.tr(),
+                      style: TextStyle(
+                        color: Color.fromRGBO(0, 0, 0, 1.0),
+                        fontFamily: 'Scientia',
+                        fontWeight: FontWeight.w900,
+                        fontSize: 16.0,
+                      ),
+                    ),
+                    FlatButton(
+                      splashColor: Colors.blue,
+                      onPressed: () {},
+                      color: Color.fromRGBO(0, 0, 0, 1.0),
+                      shape: RoundedRectangleBorder(
+                        borderRadius: BorderRadius.circular(15.0),
+                      ),
+                      child: Container(
+                        padding: EdgeInsets.symmetric(
+                            horizontal: 15.0, vertical: 18.0),
+                        child: Text(
+                          'upgrade'.tr(),
+                          style: TextStyle(
+                            fontFamily: 'Scientia',
+                            fontSize: 15.0,
+                            color: Color.fromRGBO(255, 255, 255, 1.0),
+                          ),
+                        ),
+                      ),
+                    )
+                  ],
+                )
+              : Center(
                   child: Text(
-                    'Upgrade',
+                    'premiumUser'.tr(),
                     style: TextStyle(
                       fontFamily: 'Scientia',
-                      fontSize: 15.0,
-                      color: Color.fromRGBO(255, 255, 255, 1.0),
+                      fontWeight: FontWeight.w700,
+                      fontSize: 20.0,
                     ),
                   ),
                 ),
-              )
-            ],
-          ),
         )
       ],
     );

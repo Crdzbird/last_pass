@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:easy_localization/easy_localization.dart';
 
 class LastPassTitle extends StatelessWidget {
   final double height, width;
@@ -16,10 +17,10 @@ class LastPassTitle extends StatelessWidget {
             fontWeight: FontWeight.w700,
             color: Color.fromRGBO(0, 0, 0, 1.0),
           ),
-          text: 'Last',
+          text: 'forgot'.tr(),
           children: [
             TextSpan(
-              text: 'Pass',
+              text: 'pass'.tr(),
               style: TextStyle(
                 fontWeight: FontWeight.w700,
                 color: Color.fromRGBO(219, 85, 79, 1.0),

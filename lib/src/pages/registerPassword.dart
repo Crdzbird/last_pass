@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
+import 'package:easy_localization/easy_localization.dart';
 import 'package:last_pass/src/widgets/credential_type_registration.dart';
 import 'package:last_pass/src/widgets/lastPass_title.dart';
 
@@ -34,7 +35,7 @@ class _RegisterPasswordScreenState extends State<RegisterPasswordScreen> {
           },
           child: Center(
             child: Text(
-              'BACK',
+              'back'.tr().toUpperCase(),
               style: TextStyle(
                 fontFamily: 'Scientia',
                 fontWeight: FontWeight.w600,
@@ -71,14 +72,15 @@ class _RegisterPasswordScreenState extends State<RegisterPasswordScreen> {
                 itemCount: 8,
                 itemBuilder: (context, index) {
                   return CredentialTypeRegistration(
-                      active: _selectedMainPage == index,
-                      title: _temporaryList[index]['title'],
-                      icon: _temporaryList[index]['icon'],
-                      onTap: () {
-                        setState(() {
-                          _selectedMainPage = index;
-                        });
+                    active: _selectedMainPage == index,
+                    title: _temporaryList[index]['title'],
+                    icon: _temporaryList[index]['icon'],
+                    onTap: () {
+                      setState(() {
+                        _selectedMainPage = index;
                       });
+                    },
+                  );
                 },
               ),
             ),

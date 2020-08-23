@@ -24,9 +24,7 @@ class _FadeIndexedStackState extends State<FadeIndexedStack>
 
   @override
   void didUpdateWidget(FadeIndexedStack oldWidget) {
-    if (widget.index != oldWidget.index) {
-      _controller.forward(from: 0.0);
-    }
+    if (widget.index != oldWidget.index) _controller.forward(from: 0.0);
     super.didUpdateWidget(oldWidget);
   }
 

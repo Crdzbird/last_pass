@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:last_pass/src/provider/form_notifier_provider.dart';
 import 'package:provider/provider.dart';
+import 'package:last_pass/src/provider/form_notifier_provider.dart';
 
 class CredentialsQuestion extends StatefulWidget {
   final String title;
