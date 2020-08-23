@@ -1,5 +1,4 @@
 import 'dart:ui';
-
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:easy_localization/easy_localization.dart';
@@ -19,7 +18,6 @@ class _DashboardScreenState extends State<DashboardScreen> {
   @override
   Widget build(BuildContext context) {
     final screen = MediaQuery.of(context).size;
-    print("backdrop: $_isBackdrop");
     return Scaffold(
       body: SafeArea(
         child: Stack(
@@ -76,10 +74,10 @@ class _DashboardScreenState extends State<DashboardScreen> {
     setState(() {
       _isBackdrop = true;
     });
-    print(_isBackdrop);
-    var bottomSheet = await showModalBottomSheet(
+    await showModalBottomSheet(
       context: context,
       isDismissible: true,
+      enableDrag: false,
       elevation: 5.0,
       shape: RoundedRectangleBorder(
         borderRadius: BorderRadius.vertical(
@@ -89,11 +87,39 @@ class _DashboardScreenState extends State<DashboardScreen> {
       clipBehavior: Clip.antiAliasWithSaveLayer,
       builder: (context) {
         return Container(
+          padding: EdgeInsets.symmetric(horizontal: 10.0, vertical: 10.0),
           decoration: new BoxDecoration(
             color: Colors.white,
           ),
-          child: Center(
-            child: Text("Hi BottomSheet"),
+          child: Column(
+            children: [
+              Row(
+                children: [
+                  Spacer(),
+                  GestureDetector(
+                    onTap: () => Navigator.of(context).pop(),
+                    child: CircleAvatar(
+                      backgroundColor: Color.fromRGBO(218, 220, 233, 1.0),
+                      child: Text(
+                        'X',
+                        style: TextStyle(
+                          color: Color.fromRGBO(255, 255, 255, 1.0),
+                          fontSize: 20.0,
+                        ),
+                      ),
+                    ),
+                  ),
+                ],
+              ),
+              Flexible(
+                child: Material(
+                  color: Colors.transparent,
+                  child: ListView(
+                    children: _menuOptions(),
+                  ),
+                ),
+              ),
+            ],
           ),
         );
       },
@@ -101,7 +127,77 @@ class _DashboardScreenState extends State<DashboardScreen> {
     setState(() {
       _isBackdrop = false;
     });
-    print('bottomSheet closed: ' + bottomSheet.toString());
+  }
+
+  List<Widget> _menuOptions() {
+    return [
+      InkWell(
+        splashColor: Colors.blue,
+        onTap: () {},
+        child: ListTile(
+          leading: Icon(
+            FontAwesomeIcons.userPlus,
+            color: Color.fromRGBO(0, 0, 0, 1.0),
+          ),
+          title: Text('share'.tr()),
+        ),
+      ),
+      InkWell(
+        splashColor: Colors.blue,
+        onTap: () {},
+        child: ListTile(
+          leading: Icon(
+            FontAwesomeIcons.userFriends,
+            color: Color.fromRGBO(0, 0, 0, 1.0),
+          ),
+          title: Text('permissions'.tr()),
+        ),
+      ),
+      InkWell(
+        splashColor: Colors.blue,
+        onTap: () {},
+        child: ListTile(
+          leading: Icon(
+            FontAwesomeIcons.shareAlt,
+            color: Color.fromRGBO(0, 0, 0, 1.0),
+          ),
+          title: Text('shareLink'.tr()),
+        ),
+      ),
+      InkWell(
+        splashColor: Colors.blue,
+        onTap: () {},
+        child: ListTile(
+          leading: Icon(
+            FontAwesomeIcons.folderPlus,
+            color: Color.fromRGBO(0, 0, 0, 1.0),
+          ),
+          title: Text('moveTo'.tr()),
+        ),
+      ),
+      InkWell(
+        splashColor: Colors.blue,
+        onTap: () {},
+        child: ListTile(
+          leading: Icon(
+            FontAwesomeIcons.download,
+            color: Color.fromRGBO(0, 0, 0, 1.0),
+          ),
+          title: Text('download'.tr()),
+        ),
+      ),
+      InkWell(
+        splashColor: Colors.blue,
+        onTap: () {},
+        child: ListTile(
+          leading: Icon(
+            FontAwesomeIcons.trashAlt,
+            color: Color.fromRGBO(0, 0, 0, 1.0),
+          ),
+          title: Text('remove'.tr()),
+        ),
+      ),
+    ];
   }
 
   Widget _recent(BuildContext context, Size screen) {

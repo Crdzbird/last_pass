@@ -24,5 +24,11 @@
     "startNow": "get started now",
     "back": "back",
     "forgot": "Forgot",
-    "pass": "Pass"
+    "pass": "Pass",
+    "share": "Share",
+    "permissions": "Manage permissions",
+    "shareLink": "Shareable link",
+    "moveTo": "Move to",
+    "download": "Download",
+    "remove": "Remove"
 }
